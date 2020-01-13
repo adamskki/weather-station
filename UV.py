@@ -1,4 +1,5 @@
 import spidev
+import time
 
 spi = spidev.SpiDev()
 spi.open(0,0)
@@ -9,4 +10,14 @@ def ReadChannel(channel):
   data = ((adc[1]&3) << 8) + adc[2]
   return data
 
-print(ReadChannel(0))
+def readSensorUV():
+  numOfReadings = 3
+  dataSensorUV = 0
+  for i in range(numOfReadings):
+    dataSensorUV += ReadChannel(0)
+    time.sleep(0.2)
+  dataSensorUV /= numOfReadings
+  dataSensorUV = (dataSensorUV * (3.3 / 1023.0)) * 1000;
+  return round(dataSensorUV)
+
+print(readSensorUV())
