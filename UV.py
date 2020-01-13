@@ -9,4 +9,4 @@ def ReadChannel(channel):
   data = ((adc[1]&3) << 8) + adc[2]
   return data
 
-ReadChannel(0)
+print(ReadChannel(0))
