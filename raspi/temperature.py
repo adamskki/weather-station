@@ -30,5 +30,7 @@ while index<40:
         hum = round (humDHT,1)
         temp = round (tempDHT, 1)
     index = index + 1
+    print(hum)
     cur.execute("INSERT INTO HumidityTable (humidity) VALUES (%f)" % hum)
     time.sleep(1)
+cur.execute("commit")
