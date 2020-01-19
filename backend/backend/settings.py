@@ -79,9 +79,13 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': '/etc/mysql/my.cnf',
-        },
+        'NAME': 'weather_station',
+        'USER': 'django',
+        'PASSWORD': 'lecimy12345',
+        'HOST': '192.168.1.91',
+        # 'OPTIONS': {
+        #     'read_default_file': '/etc/mysql/my.cnf',
+        # },
     }
 }
 

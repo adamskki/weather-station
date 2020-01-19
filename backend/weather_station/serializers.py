@@ -11,7 +11,7 @@ class HumiditySerializer(serializers.ModelSerializer):
 
 class TemperatureSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Temperature
+        model = Temperaturetable
         fields = "__all__"
 
 
