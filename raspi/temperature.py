@@ -3,6 +3,8 @@ import time
 from mysql.connector import (connection)
 from dotenv import load_dotenv, find_dotenv
 import os
+from w1thermsensor import W1ThermSensor
+
 
 load_dotenv(find_dotenv())
 
@@ -13,24 +15,16 @@ cnx = connection.MySQLConnection(user='raspi', password=PASSWORD,
                                  database='weather_station')
 cur = cnx.cursor()
 
-cur.execute("SHOW TABLES")
-rows = cur.fetchall()
-for row in rows:
-    print(row)
-
-DHT22Sensor = Adafruit_DHT.DHT22
-DHTpin = 16
-
 index = 0
 
-while index<40:
 
-    humDHT, tempDHT = Adafruit_DHT.read_retry(DHT22Sensor, DHTpin)
-    if (humDHT is not None) and (tempDHT is not None):
-        hum = round (humDHT,1)
-        temp = round (tempDHT, 1)
+
+while index<40:
+    ds18b20Sensor = W1ThermSensor()
+    tempExt = round(ds18b20Sensor.get_temperature(), 1)
+    print('External Temperature = {}*C'.format(tempExt))
     index = index + 1
-    print(hum)
-    cur.execute("INSERT INTO HumidityTable (humidity) VALUES (%f)" % hum)
+    print(tempExt)
+    cur.execute("INSERT INTO TemperatureTable (temperature) VALUES (%f)" % tempExt)
     time.sleep(1)
 cur.execute("commit")
