@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'weather_station',
         'USER': 'django',
-        'PASSWORD': 'lecimy12345',
+        'PASSWORD': '',
         'HOST': '192.168.1.91',
         # 'OPTIONS': {
         #     'read_default_file': '/etc/mysql/my.cnf',
