@@ -23,7 +23,7 @@ DHTpin = 16
 
 index = 0
 
-while index<40:
+while index<1:
 
     humDHT, tempDHT = Adafruit_DHT.read_retry(DHT22Sensor, DHTpin)
     if (humDHT is not None) and (tempDHT is not None):

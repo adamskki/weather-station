@@ -19,7 +19,7 @@ index = 0
 
 
 
-while index<40:
+while index<1:
     ds18b20Sensor = W1ThermSensor()
     tempExt = round(ds18b20Sensor.get_temperature(), 1)
     print('External Temperature = {}*C'.format(tempExt))
