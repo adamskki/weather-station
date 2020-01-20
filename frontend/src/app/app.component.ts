@@ -25,6 +25,7 @@ export interface Serie {
 @Component({
   selector: 'app-root',
   template: `
+    <spinner *ngIf="loading"></spinner>
     <ng-container *ngIf="!loading">
       <div class="header-container">
         <p class="header">stacja pogodowa</p>
@@ -142,45 +143,39 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.appService.getHospitalWards().subscribe(weatherData => {
-      this.weatherData = weatherData;
+    this.appService.getTemperature().subscribe(temperature => {
       this.temperaturePlot.results = [{
         name: 'temperatura',
-        series: this.weatherData.temperature.map(
-          (temperature, index) => ({
+        series: temperature.map(
+          (temp, index) => ({
               name: String(index),
-              value: temperature
+              value: temp.temperature
             } as Serie
           ))
       }];
-      this.humidity.results = [{
-        name: 'wilgotność',
-        series: this.weatherData.humidity.map(
-          (humidity, index) => ({
-              name: String(index),
-              value: humidity
-            } as Serie
-          ))
-      }];
-      this.pressure.results = [{
-        name: 'ciśnienie',
-        series: this.weatherData.humidity.map(
-          (pressure, index) => ({
-              name: String(index),
-              value: pressure
-            } as Serie
-          ))
-      }];
-      this.uv.results = [{
-        name: 'uv',
-        series: this.weatherData.uv.map(
-          (uv, index) => ({
-              name: String(index),
-              value: uv
-            } as Serie
-          ))
-      }];
-      this.loading = false;
+      this.appService.getHumidity().subscribe(humidity => {
+        this.humidity.results = [{
+          name: 'wilgotność',
+          series: humidity.map(
+            (hum, index) => ({
+                name: String(index),
+                value: hum.humidity
+              } as Serie
+            ))
+        }];
+        this.appService.getPressure().subscribe(pressure => {
+          this.pressure.results = [{
+            name: 'ciśnienie',
+            series: pressure.map(
+              (p, index) => ({
+                  name: String(index),
+                  value: p.pressure
+                } as Serie
+              ))
+          }];
+          this.loading = false;
+        });
+      });
     });
   }
 }
