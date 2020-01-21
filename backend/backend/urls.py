@@ -23,6 +23,7 @@ from weather_station import views
 router = routers.DefaultRouter()
 router.register('humidity', views.HumidityAPI)
 router.register('temperature', views.TemperatureAPI)
+router.register('pressure', views.PressureAPI)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -15,5 +15,12 @@ class TemperatureSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class PressureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pressuretable
+        fields = "__all__"
+
+
+
 
 

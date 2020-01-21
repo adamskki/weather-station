@@ -16,6 +16,14 @@ class Humiditytable(models.Model):
         db_table = 'HumidityTable'
 
 
+class Pressuretable(models.Model):
+    pressure = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'PressureTable'
+
+
 class Temperaturetable(models.Model):
     temperature = models.FloatField(blank=True, null=True)
 

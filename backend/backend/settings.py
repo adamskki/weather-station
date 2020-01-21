@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
+
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -81,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'weather_station',
         'USER': 'django',
-        'PASSWORD': '',
+        'PASSWORD': DB_PASSWORD,
         'HOST': '192.168.1.91',
         # 'OPTIONS': {
         #     'read_default_file': '/etc/mysql/my.cnf',
