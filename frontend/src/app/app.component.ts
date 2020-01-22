@@ -25,7 +25,7 @@ export interface Serie {
 @Component({
   selector: 'app-root',
   template: `
-    <spinner *ngIf="loading"></spinner>
+    <spinner *ngIf="loading" [ngStyle]="{'margin': 'auto'}"></spinner>
     <ng-container *ngIf="!loading">
       <div class="header-container">
         <p class="header">stacja pogodowa</p>
@@ -67,7 +67,7 @@ export interface Serie {
                                [results]="pressure.results"
                                [gradient]="pressure.gradient"
                                [xAxis]="pressure.showXAxis"
-                               [yAxis]="pressure.showYAxis"
+                               [yAxis]="pressure.showYAxis"W
                                [legend]="pressure.showLegend"
                                [showXAxisLabel]="pressure.showXAxisLabel"
                                [showYAxisLabel]="pressure.showYAxisLabel"
@@ -75,21 +75,6 @@ export interface Serie {
                                [yAxisLabel]="pressure.yAxisLabel"
                                [autoScale]="pressure.autoScale"
                                [timeline]="pressure.timeline">
-        </ngx-charts-line-chart>
-        <ngx-charts-line-chart class="chart"
-                               [view]="uv.view"
-                               [scheme]="uv.scheme"
-                               [results]="uv.results"
-                               [gradient]="uv.gradient"
-                               [xAxis]="uv.showXAxis"
-                               [yAxis]="uv.showYAxis"
-                               [legend]="uv.showLegend"
-                               [showXAxisLabel]="uv.showXAxisLabel"
-                               [showYAxisLabel]="uv.showYAxisLabel"
-                               [xAxisLabel]="uv.xAxisLabel"
-                               [yAxisLabel]="uv.yAxisLabel"
-                               [autoScale]="uv.autoScale"
-                               [timeline]="uv.timeline">
         </ngx-charts-line-chart>
       </div>
     </ng-container>
@@ -109,7 +94,7 @@ export class AppComponent implements OnInit {
     showXAxisLabel: true,
     showYAxisLabel: true,
     timeline: true,
-    autoScale: true,
+    autoScale: false,
     view: [700, 500],
     xAxisLabel: 'numer pomiaru',
     scheme: {
@@ -119,17 +104,17 @@ export class AppComponent implements OnInit {
 
   temperaturePlot: NgxChartsConfig = {
     ...this.plotCommonParameters,
-    yAxisLabel: 'Temperatura',
+    yAxisLabel: 'Temperatura [stopnie]',
   };
 
   humidity: NgxChartsConfig = {
     ...this.plotCommonParameters,
-    yAxisLabel: 'Wilgotność',
+    yAxisLabel: 'Wilgotność [%]',
   };
 
   pressure: NgxChartsConfig = {
     ...this.plotCommonParameters,
-    yAxisLabel: 'Ciśnienie',
+    yAxisLabel: 'Ciśnienie [hPa]',
   };
 
   uv: NgxChartsConfig = {

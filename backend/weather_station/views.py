@@ -4,6 +4,7 @@ from .serializers import *
 from .models import *
 
 
+
 class HumidityAPI(viewsets.ModelViewSet):
     serializer_class = HumiditySerializer
     queryset = Humiditytable.objects.all().values('humidity')
